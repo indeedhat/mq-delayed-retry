@@ -8,14 +8,15 @@ It makes use of multiple exchanges/exchange bindings to re publish messages to a
 sequenceDiagram
     actor Publisher
     actor Consumer
-    actor PublishExchange
-    actor ServiceExchange
-    actor DelayQueue
-    actor RetryExchange
+    participant PublishExchange
+    participant ServiceExchange
+    participant DelayQueue
+    participant RetryExchange
     Publisher->>PublishExchange: Publish Message
     PublishExchange->>ServiceExchange: Forward to service echanges
     ServiceExchange->>Consumer: picked up via topic
     Consumer->>DelayQueue: send to delay queue with 1s delay topic and 1s ttl
     DelayQueue->>RetryExchange: on message timeout
     RetryExchange->>ServiceExchange: send to appropriate service exchange to retry
+    ServiceExchange->>Consumer: picked up via topic
 ```

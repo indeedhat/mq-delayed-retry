@@ -1,0 +1,17 @@
+# github.com/indeedhat/automux
+# config version
+version = 1
+
+session_id = "mq-delayed-retry"
+
+window "Editor" {
+    exec = "vim"
+    focus = true
+}
+
+window "Shell" {
+    split {
+    }
+}
+
+# vi: ft=hcl
